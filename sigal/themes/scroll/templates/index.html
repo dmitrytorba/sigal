@@ -61,13 +61,14 @@
         {% macro album_images(alb) -%}
           {% if alb.albums %}
             {% for album in alb.albums %}
+              <h4>{{ album.name }}</h4>
               {{ album_images(album) }}
             {% endfor %}
           {% else %}
             {% for media in alb.medias %}
               {% if media.type == "image" %}
                 <a href="{{ media.filename }}">
-                  <img src="{{ media.thumbnail }}" alt="{{ media.filename }}"
+                  <img src="{{ alb.path }}/{{ media.thumbnail }}" alt="{{ media.filename }}"
                        data-title="{{ media.title if media.title else media.filename }}"
                        {% if media.big %} data-big="{{ media.big }}"{% endif %} />
                 </a>
